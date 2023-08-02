@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import UserEditForm
 
 
 # Create your views here.
 
-class AccountIndex(TemplateView):
+class AccountIndex(LoginRequiredMixin, TemplateView):
 
     template_name = 'account/index.html'
 
@@ -27,7 +28,7 @@ class AccountLogin(LoginView):
 class AccountLogout(LogoutView):
     pass    
 
-class AccountEdit(UpdateView):
+class AccountEdit(LoginRequiredMixin, UpdateView):
     template_name = 'account/edit_account.html'
     form_class = UserEditForm
 

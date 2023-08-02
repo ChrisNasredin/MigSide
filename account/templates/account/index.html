@@ -2,4 +2,9 @@
 
 {% block content %}
     <h1>{{ h1 }}</h1>
+    <p>{{ request.user.username }}</p>
+    <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
+    <p>{{ request.user.position }}</p>
+    <a href="{% url 'edit_account' %}">Edit my profile</a>
+    <a href="{% url 'logout' %}">Logout</a>
 {% endblock content %}
