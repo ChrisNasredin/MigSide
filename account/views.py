@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import UserEditForm
 
 
@@ -23,7 +23,7 @@ class AccountLogin(LoginView):
     template_name = 'account/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('account_index')
+        return reverse_lazy('account:account_index')
 
 class AccountLogout(LogoutView):
     pass    
@@ -35,4 +35,4 @@ class AccountEdit(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
     def get_success_url(sefl):
-        return reverse_lazy('account_index')
+        return reverse_lazy('account:account_index')

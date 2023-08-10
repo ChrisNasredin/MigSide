@@ -6,6 +6,15 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <nav>
+        {% if request.user.is_authenticated %}
+            <i>{{ request.user.username }}</i>
+            <a href="{% url 'account:account_index' %}">Мой профиль</a>
+            <a href="{% url 'account:logout' %}">Выход</a>
+        {% else %}
+            <a href="{% url 'account:login' %}">Вход</a>
+        {% endif %}
+    </nav>
     {% block content %}
         
     {% endblock content %}
